@@ -77,4 +77,3 @@ models/        Local model weights (ignored by Git)
 ## Licensing and attribution
 
 Copyright (C) 2026 Rohit Basu Roy Chowdhury. The original source files in this repository are licensed under AGPL-3.0; see [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). The repository does not include the local YOLO weights, reference video, or sample traffic footage. Only include media or model files if you have the rights to redistribute them.
-

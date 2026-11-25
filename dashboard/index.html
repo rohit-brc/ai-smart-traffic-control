@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b151b">
+  <title>Smart Traffic Control</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Smart Traffic Control home">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>FLOW<span class="brand-light">STATE</span></span>
+    </a>
+    <div class="top-meta"><span class="live-dot"></span><span id="connection">CONNECTING</span><span class="divider"></span><span>LOCAL DEMO</span></div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div>
+        <p class="eyebrow">AI BASED SMART TRAFFIC CONTROL SYSTEM</p>
+        <h1>Traffic, made<br><em>understandable.</em></h1>
+        <p class="lede">A local computer vision demo for observing vehicle flow and comparing two approaches.</p>
+      </div>
+      <div class="cycle-card"><span class="eyebrow">ESTIMATED GREEN CYCLE</span><strong>60<span>sec</span></strong><small>Adaptive demonstration timing</small></div>
+    </section>
+
+    <section class="summary-grid" aria-label="Traffic summary">
+      <article class="metric"><span class="metric-label">VEHICLES IN VIEW</span><strong id="totalVehicles">—</strong><small>Across both approaches</small></article>
+      <article class="metric"><span class="metric-label">BUSIEST APPROACH</span><strong class="metric-text" id="busiest">—</strong><small>Based on current detections</small></article>
+      <article class="metric"><span class="metric-label">DETECTION MODEL</span><strong class="metric-text" id="modelStatus">Checking</strong><small id="modelMessage">Local ONNX model</small></article>
+    </section>
+
+    <section class="workspace">
+      <div class="video-panel panel">
+        <div class="panel-heading"><div><p class="eyebrow">CAMERA FEED</p><h2>Intersection view</h2></div><span class="status-pill" id="sourceStatus">WAITING</span></div>
+        <form class="video-upload" id="videoUpload">
+          <label for="videoFile">Analyze an uploaded video</label>
+          <div class="upload-controls">
+            <input id="videoFile" name="video" type="file" accept=".mp4,.mov,.avi,.mkv,.webm,video/*" required>
+            <button id="uploadButton" type="submit">Use video</button>
+          </div>
+          <small id="uploadMessage">Your file is processed locally.</small>
+        </form>
+        <div class="video-frame"><img src="/video.mjpg" alt="Annotated traffic video feed" onerror="this.style.display='none'"><div class="video-placeholder" id="placeholder"><span class="camera-icon">◉</span><strong>Waiting for a video source</strong><span>Set VIDEO_SOURCE in your local .env file</span></div><span class="feed-label">LIVE PREVIEW</span></div>
+        <div class="video-foot"><span>Source stays on your computer</span><span id="updatedAt">No frames yet</span></div>
+      </div>
+
+      <div class="approaches panel">
+        <div class="panel-heading"><div><p class="eyebrow">FLOW BALANCE</p><h2>Approach load</h2></div><span class="small-tag">2 ZONES</span></div>
+        <div class="signal-card" aria-live="polite">
+          <div class="signal-heading"><div><p class="eyebrow">SIMULATED TRAFFIC SIGNALS</p><small>Independent lights for each approach</small></div><span class="signal-tag">DEMO</span></div>
+          <div class="signal-pair">
+            <article class="signal-unit" aria-label="Approach A traffic signal">
+              <div class="signal-unit-head"><strong>APPROACH A</strong><span id="signalAStatus">RED</span></div>
+              <div class="traffic-light"><span class="lamp lamp-red" id="signalARed"></span><span class="lamp lamp-yellow" id="signalAYellow"></span><span class="lamp lamp-green" id="signalAGreen"></span></div>
+              <small id="signalACountdown">Waiting for traffic data</small>
+            </article>
+            <article class="signal-unit" aria-label="Approach B traffic signal">
+              <div class="signal-unit-head"><strong>APPROACH B</strong><span id="signalBStatus">RED</span></div>
+              <div class="traffic-light"><span class="lamp lamp-red" id="signalBRed"></span><span class="lamp lamp-yellow" id="signalBYellow"></span><span class="lamp lamp-green" id="signalBGreen"></span></div>
+              <small id="signalBCountdown">Waiting for traffic data</small>
+            </article>
+          </div>
+        </div>
+        <div id="laneCards" class="lane-list"></div>
+        <div class="timing-note"><span class="note-icon">↗</span><p>Green-time values are estimates for demonstration. They do not control real traffic signals.</p></div>
+      </div>
+    </section>
+
+    <section class="bottom-note"><div class="signal"><i class="red"></i><i class="yellow"></i><i class="green"></i></div><p><strong>Prototype only.</strong> Never connect this demo to public-road signal equipment.</p><span>CREATED BY ROHIT BASU ROY CHOWDHURY</span></section>
+  </main>
+  <script src="/app.js?v=4"></script>
+</body>
+</html>
